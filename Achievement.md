@@ -1,3 +1,12 @@
+May 23, 2015
+---
+##Sass
+sass is a framework to implement css easier
+gem install sass
+sass –watch scss/app.scss:www/css/style.css
+watch a scss file changing a css file
+details see the official website
+
 May 22, 2015
 --------------
 ##terminal http server

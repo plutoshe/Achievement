@@ -1,3 +1,18 @@
+May 26, 2015
+---
+##context package of Golang
+decript a context in network to check, gain request
+solve the request value, deadline, authorization tokens of goroutines to access backends such as databases and RPC services
+Backgroud() :
+generate a empty context(see details in GoDoc)
+
+WithValue() : 
+WithValue returns a copy of parent in which the value associated with key is val.
+Use context Values only for request-scoped data that transits processes and APIs, not for passing optional parameters to functions.
+
+For instance :
+grpc could use it to check whether meta message is right or not
+
 May 23, 2015
 ---
 ##Sass

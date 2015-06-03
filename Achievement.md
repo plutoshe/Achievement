@@ -1,3 +1,33 @@
+June 3, 2015
+---
+###exec packages of golang
+store the command, exec in bash, cmd.Stdout and cmd.Stderr could access the stdout, stderr.
+```
+package main
+
+import (
+    "log"
+    "os/exec"
+)
+
+func main() {
+    argv := []string{"-port", "10024"}
+    cmd := exec.Command("./sample_mapper_user_program/sample_mapper_server", argv...)
+    err := cmd.Start()
+    if err != nil {
+        log.Fatal(err)
+    }
+    //  var out bytes.Buffer
+    // cmd.Stdout = &out
+    // w := bytes.NewBuffer(nil)
+    // cmd.Stderr = w
+    // cmd.Wait()
+    // fmt.Printf("in all caps: %q\n", out.String())
+    // fmt.Printf("output: %s\n", w.Bytes())
+}
+```
+
+
 May 26, 2015
 ---
 ##context package of Golang

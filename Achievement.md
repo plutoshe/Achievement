@@ -1,3 +1,23 @@
+Jun 11, 2015
+###sudo env
+---
+when linux run sudo command, it doesn't inherit general enviorment variable
+one solution is user a tricky
+add enviroment variables to sudoers config:
+```
+ sudo visudo
+```
+add these lines
+```
+Defaults env_keep += "ftp_proxy http_proxy https_proxy no_proxy...(pointed env variable)"
+```
+
+othe solution is 
+```
+export HTTP_PROXY=foof
+sudo -E bash -c 'echo $HTTP_PROXY'
+```
+
 Jun 7, 2015
 ---
 ###Docker trait

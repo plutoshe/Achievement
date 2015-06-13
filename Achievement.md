@@ -1,6 +1,15 @@
-Jun 11, 2015
-###sudo env
+Jun 13, 2015
 ---
+###proxychain and http_proxy
+proxychain change the ld method, ld preload the substituted function from static linkage. 
+Http_proxy only change the bash ostensible link configuration. 
+Becuase golang doesn't use static linkage, "go get " only could link the web through http_proxy config. 
+Git uses proxychain to substitute its config
+
+Jun 11, 2015
+---
+###sudo env
+
 when linux run sudo command, it doesn't inherit general enviorment variable
 one solution is user a tricky
 add enviroment variables to sudoers config:

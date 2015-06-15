@@ -1,3 +1,9 @@
+Jun 14, 2015
+###Batching thinking
+when do same thing repeatly, please rethink a batch process method to do it.
+For example testing, do redundant check code is embarrassing  
+https://github.com/golang/go/wiki/TableDrivenTests
+
 Jun 13, 2015
 ---
 ###proxychain and http_proxy

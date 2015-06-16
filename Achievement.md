@@ -1,4 +1,22 @@
+Jun 16, 2015
+---
+###contribute format 
 Jun 14, 2015
+---
+The patch’s subject (the commit message’s first line) should:
+- begin with an uppercase letter
+- be written in the present tense
+- not exceed 72 characters in length
+- not end with a period
+- be prefixed with Fix: if the commit fixes a bug
+
+The commit message’s body should be as detailed as possible and explain the reasons behind the proposed change. Any related bug report(s) should be mentioned at the end of the message using the #123 format, where 123 is the bug number. Use Fixes: #123 to signify that this patch fixes the bug.
+
+Please note that patches should be as focused as possible. Do not, for instance, fix a bug and correct the indentation of an unrelated block of code as part of the same patch.
+
+etcd contribution rules:
+https://github.com/coreos/etcd/blob/master/CONTRIBUTING.md
+
 ###Batching thinking
 when do same thing repeatly, please rethink a batch process method to do it.
 For example testing, do redundant check code is embarrassing  

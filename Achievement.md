@@ -1,8 +1,25 @@
+Jun 18, 2015
+---
+###benchmark
+#####wiki of benchmark
+In computing, a benchmark is the act of running a computer program, a set of programs, or other operations, in order to assess the relative performance of an object, normally by running a number of standard tests and trials against it. The term 'benchmark' is also mostly utilized for the purposes of elaborately designed benchmarking programs themselves.
+
+Therefore benchmark includes mainly two part, instance and testing example.
+
+For golang, we only need to implement concrete testing case, and for user code run user code to record this performance.
+```
+go test -bench=".*" -cpuprofile=cpu.prof -c
+```
+cpuprofile generate cpu profile, produce binary status program.
+it could use go tool pprof to produce specific timing cost status picture
+test
+```
+go tool pprof mymysql.test cpu.prof
+```
+
 Jun 16, 2015
 ---
 ###contribute format 
-Jun 14, 2015
----
 The patch’s subject (the commit message’s first line) should:
 - begin with an uppercase letter
 - be written in the present tense
@@ -17,6 +34,8 @@ Please note that patches should be as focused as possible. Do not, for instance,
 etcd contribution rules:
 https://github.com/coreos/etcd/blob/master/CONTRIBUTING.md
 
+Jun 14, 2015
+---
 ###Batching thinking
 when do same thing repeatly, please rethink a batch process method to do it.
 For example testing, do redundant check code is embarrassing  
@@ -24,11 +43,11 @@ https://github.com/golang/go/wiki/TableDrivenTests
 
 Jun 13, 2015
 ---
-###proxychain and http_proxy
-proxychain change the ld method, ld preload the substituted function from static linkage. 
+###proxychains and http_proxy
+proxychains change the ld method, ld preload the substituted function from static linkage. 
 Http_proxy only change the bash ostensible link configuration. 
 Becuase golang doesn't use static linkage, "go get " only could link the web through http_proxy config. 
-Git uses proxychain to substitute its config
+Git uses proxychains to substitute its config
 
 Jun 11, 2015
 ---

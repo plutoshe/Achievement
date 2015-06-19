@@ -1,9 +1,18 @@
+Jun 19, 2015
+---
+###free port of localhost
+
+Port 0 trick: on both Windows and Linux, if you bind a socket to port 0, the kernel will assign it a free port number somewhere above 1024(A random free port from 1024 to 65535 will be selected.). 
+
+Truly well-written software (e.g. Jetty) will not only let you configure it to bind to port 0, but will make it easy to parse its logs to obtain the actual port number it got assigned.
+
+
 Jun 18, 2015
 ---
 ###benchmark
 #####wiki of benchmark
 In computing, a benchmark is the act of running a computer program, a set of programs, or other operations, in order to assess the relative performance of an object, normally by running a number of standard tests and trials against it. The term 'benchmark' is also mostly utilized for the purposes of elaborately designed benchmarking programs themselves.
-
+#####realization
 Therefore benchmark includes mainly two part, instance and testing example.
 
 For golang, we only need to implement concrete testing case, and for user code run user code to record this performance.

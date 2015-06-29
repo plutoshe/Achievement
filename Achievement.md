@@ -1,3 +1,41 @@
+Jun 29, 2015
+###Latency number of access different component 
+Latency Comparison Numbers
+--------------------------
+L1 cache reference                            0.5 ns
+Branch mispredict                             5   ns
+L2 cache reference                            7   ns             14x L1 cache
+Mutex lock/unlock                            25   ns
+Main memory reference                       100   ns             20x L2 cache, 200x L1 cache
+Compress 1K bytes with Zippy              3,000   ns
+Send 1K bytes over 1 Gbps network        10,000   ns    0.01 ms
+Read 4K randomly from SSD*              150,000   ns    0.15 ms
+Read 1 MB sequentially from memory      250,000   ns    0.25 ms
+Round trip within same datacenter       500,000   ns    0.5  ms
+Read 1 MB sequentially from SSD*      1,000,000   ns    1    ms  4X memory
+Disk seek                            10,000,000   ns   10    ms  20x datacenter roundtrip
+Read 1 MB sequentially from disk     20,000,000   ns   20    ms  80x memory, 20X SSD
+Send packet CA->Netherlands->CA     150,000,000   ns  150    ms
+
+reference:
+https://gist.github.com/jboner/2841832
+
+Jun 25, 2015
+---
+###dynamic linkers && LD_PRELOAD
+invoked by [proxy install in mach](https://github.com/rofl0r/proxychains-ng)
+ProxyChains is a UNIX program, that hooks network-related libc functions
+  in DYNAMICALLY LINKED programs via a preloaded DLL (dlsym(), LD_PRELOAD)
+  and redirects the connections through SOCKS4a/5 or HTTP proxies.
+  It supports TCP only (no UDP/ICMP etc).
+
+LD_PRELOAD reference:
+http://jvns.ca/blog/2014/11/27/ld-preload-is-super-fun-and-easy/
+http://www.catonmat.net/blog/simple-ld-preload-tutorial-part-2/
+https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
+https://en.wikipedia.org/wiki/Dynamic_linker
+
+
 Jun 19, 2015
 ---
 ###free port of localhost

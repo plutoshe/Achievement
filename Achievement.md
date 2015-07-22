@@ -1,3 +1,12 @@
+July 22, 2015
+###server chinese unicode display "???"
+When vim/display/java compiler could not recognize chinese character, it may be the server's locale setting issue.
+What finally helped was putting to the file /etc/environment:
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
+After env setting settled, the issue is fixed.
+
+
 Jun 29, 2015
 ###Latency number of access different component 
 Latency Comparison Numbers

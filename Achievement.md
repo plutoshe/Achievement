@@ -1,3 +1,14 @@
+Seq 6, 2015
+---
+###golang install
+Some commands installing golang into linux system without specific version
+```
+RUN wget https://storage.googleapis.com/golang/go1.5.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.5.linux-amd64.tar.gz
+ENV PATH $PATH:/usr/local/go/bin
+ENV GOPATH /go/lib:/go/src/app
+```
+
 July 22, 2015
 ---
 ###server chinese unicode display "???"

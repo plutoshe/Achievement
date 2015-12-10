@@ -1,3 +1,84 @@
+###mongo update all
+
+Multi update was added recently, so is only available in the development releases (1.1.3). From the shell you do a multi update by passing true as the fourth argument to update(), where the the third argument is the upsert argument:
+```
+db.test.update({foo: "bar"}, {$set: {test: "success!"}}, false, true);
+```
+
+###git branch recover
+```
+git branch recover-branch sha-1
+```
+###git alias
+```
+git config --global alias.logp "log --pretty=oneline"
+```
+###git reflog
+check the recent HEAD states
+###grep, show surrounding lines
+```
+  grep -B n -A n
+  -B set how many lines before the match
+  -A set how many lines after the match
+```
+###regex cancel greedy
+add ? to (?|+|*), make these become no greedy
+It is sound because add ? is only need one match.
+
+
+###change submodule to subtree
+ - ref
+    http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/
+
+
+
+###bash sort and uniq 
+if we want to unique key and count the numbers of every key
+```
+cat wantedData | sort..(like -t) | uniq -c | sort k2nr | awk '{printf("%s %s ",$2,$1)}END{print}'
+ echo "100 100 100 99 99 26 25 24 24" | awk '{for(i=1;i<=NF;i++)a[$i]++}END{for(o in a) printf "%s %s ",o,a[o]}'
+```
+
+###pass the vimrc to remote
+```
+http://serverfault.com/questions/33423/how-to-bring-vimrc-around-when-i-ssh
+```
+
+
+###mongo export csv
+```
+mongoexport --host localhost --db dd --collection user_action --type=csv --out text.csv --fields _id,actiontype,appid,extra,timestamp,extra.ip
+```
+
+
+###mongodb copy collection
+```
+db.<collection_name>.find().forEach(function(d){ db.getSiblingDB('<new_database>')['<collection_name>'].insert(d); });
+```
+
+
+###linux cmd
+```
+find . -type d | egrep "^[^\/]*\/[^\/]*$" 
+ls | grep -v "project" | xargs -I {} -n 1 mv {} ./project/
+```
+
+###Docker deepdash build
+```
+docker build -t remote_docker_image_repo<r.fds.so:5000/deepdash>:tagname<20151201> -f Dockerfile .
+docker push remote_docker_image_repo<r.fds.so:5000/deepdash>:tagname<20151201>
+ssh dsadmin@qd.chinacloudapp.cn
+kubectl rolling-update deepdash --image imagename<r.fds.so:5000/deepdash:20151201>
+
+docker build -t r.fds.so:5000/deepdash:20151201 -f Dockerfile .
+docker push r.fds.so:5000/deepdash:20151201
+ssh dsadmin@qd.chinacloudapp.cn
+
+cd installation/cn-flannel-azure/
+ssh -F ./output/k8s-fl_d84fc8d65075b0_ssh_conf master-00
+kubectl rolling-update deepdash --image r.fds.so:5000/deepdash:20151201
+```
+
 ###Apple Input source missing
 I got over it. Delete the file "com.apple.HIToolbox.plist", and run sudo rm -f /System/Library/Caches/com.apple.IntlDataCache.le* . Then it worked.
 
@@ -513,4 +594,4 @@ May 19, 2015
 ##ps aux 
 to view the detailed info of process
 ##cmd+shift+h in ITerm2
-view the history of copy in ITerm 
+view the history of copy in ITerm >

@@ -1,3 +1,185 @@
+###golang Channel buffer mechanism
+d := make(chan int, s)
+s is a buffer capacity limit the message number the writer could write.
+Default is 1.
+If the buffer is full, the writer will wait until a empty cell appear
+experimental code
+```
+package main
+
+import (
+  "fmt"
+  "time"
+)
+
+func main() {
+  d := make(chan int, 10)
+  e := make(chan int)
+  num := 10
+  for i := 0; i < num; i++ {
+    go func(i int) {
+      time.Sleep(1 * time.Second)
+      d <- i
+      e <- i
+      fmt.Println(i, " finished")
+    }(i)
+  }
+  j := 0
+  for {
+    select {
+    case <-d:
+      // fmt.Println(s)
+      j++
+    }
+    if j >= num-1 {
+      break
+    }
+  }
+  k := 0
+  for {
+    select {
+    case s := <-e:
+      fmt.Println(k, s)
+      k++
+    }
+    if k >= num {
+      break
+    }
+  }
+}
+```
+
+###golang time.After
+func After(d Duration) <-chan Time
+
+###otool
+Realize the linked lib of .o binary file
+
+###mongo find embedded struct
+Query Exact Matches on Embedded Documents
+The following operation returns documents in the bios collection where the embedded document name is exactly { first: "Yukihiro", last: "Matsumoto" }, including the order:
+```
+db.bios.find(
+    {
+      name: {
+              first: "Yukihiro",
+              last: "Matsumoto"
+            }
+    }
+)
+```
+The name field must match the embedded document exactly. The query does not match documents with the following name fields:
+```
+{
+   first: "Yukihiro",
+   aka: "Matz",
+   last: "Matsumoto"
+}
+
+{
+   last: "Matsumoto",
+   first: "Yukihiro"
+}
+```
+
+###golang retry
+use goto op
+###http status code
+```
+  if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+    return fmt.Errorf("got status code %d", resp.StatusCode)
+  }
+```
+###mongo type
+Number NumberInt NumberLong
+###route
+http://pptpclient.sourceforge.net/routing.phtml
+###pptp
+https://www.digitalocean.com/community/tutorials/how-to-setup-your-own-vpn-with-pptp
+
+###godep save ./...
+###git cherry-pick
+only apply the difference of pointed commit to current stage, don't follow the commit we pointed, otherwise create a new commit recording the difference.
+
+###golang map op 
+If we'd like to operate item of map, our operation could not succeed since map prevent us operating concrete item.
+There are two ways to achieve that:
+  - use map[key]*value, as a result we could access the item's filed of map when manipulating the item as pointer 
+  - use temporary variable
+  
+    ```
+      a =  map[k]
+      a.b +=1
+      map[k] = b
+    ```
+
+
+###git details
+```
+git cat-file -p 236044cb88d7b52f125f2d4da5cc3a5afc437417
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  a.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  c.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  c1.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  d.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  e.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  qqqq.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  qwe.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  safds.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391  wer.txt
+```
+empty use same blob
+
+git merge, the merging commit has two parents
+```
+commit c60c04aa80bada78da33294cff61608129eea514
+tree c9ff10d2fc6e652729b9e308b8f66fb4503991a1
+parent d01d89951d5f197c4ad5696fb3f3bdc78d6c8b54
+parent b6bfaa6d74c2d8ed1bfd70cb544a221c3a7d1a42
+author plutoshe <plutoshe@gmail.com> 1449743262 +0800
+committer plutoshe <plutoshe@gmail.com> 1449743262 +0800
+
+    Merge branch 'bb'
+```
+
+
+###replace \n
+```
+sed -e 's/≈/\'$'\n/g'
+|| tr...
+```
+###golang stdin
+r := bufio.NewReader(os.Stdin)
+s, _ := r.ReadString("\n")
+
+###golang args
+flag.Args()
+Or os.Args[1] 
+
+
+###regex online tool
+https://regex101.com/
+http://www.regexpal.com/
+
+###regex cancel group mark
+Use ?: to cancel it in group mark
+like if we type
+(?:ABC)(\d+)23
+(\d+) will be $1
+but when we type
+(ABC)(\d+)23
+(ABC) will be $1, meanwhile (\d+) will be $2
+
+reference:
+http://stackoverflow.com/questions/3512471/what-is-a-non-capturing-group
+###golang runtime
+
+os.runtime.Callers()
+could track who call current program from stack
+it is a amazing technology. Afterwards, I should learn sth from it, how it implement, why it works, how it could track the caller in stacks info.
+
+reference:
+https://golang.org/pkg/runtime/#Caller
+
 ###mongo update all
 
 Multi update was added recently, so is only available in the development releases (1.1.3). From the shell you do a multi update by passing true as the fourth argument to update(), where the the third argument is the upsert argument:

@@ -1,3 +1,16 @@
+###
+If you consider the Git Faq section "Git Aliases with argument", you could do it, but by calling git through a shell:
+```
+[alias]
+        rb = "!sh -c \"git rebase -i HEAD~$1\" -"
+        ```
+I haven't tested it yet, but if you can pass an argument, that would be the way to do it.
+
+A similar solution would be to use a shell function:
+```
+[alias]
+        rb = "!f() { git rebase -i HEAD~$1; }; f"
+        ```
 ###golang Channel buffer mechanism
 d := make(chan int, s)
 s is a buffer capacity limit the message number the writer could write.

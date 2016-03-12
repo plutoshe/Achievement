@@ -1,3 +1,141 @@
+###golang interface marshal
+when we need to marshal into a interface value
+```
+package main
+type abc interface {
+  A() int
+}
+
+type s struct {
+  d int
+}
+
+func (a *s) A() int {
+  fmt.Println("!!")
+  return 3
+}
+
+type d struct {
+  G abc
+}
+
+func main() {
+  w := &d{G: &s{3}}
+  dd, err := json.Marshal(w)
+  fmt.Println(string(dd), err)
+  res := d{G: &s{}}
+  err = json.Unmarshal(dd, &res)
+  fmt.Println(res.G.A(), err)
+}
+```
+
+###Scala
+###how-to-make-a-programme-continue-to-run-after-log-out-from-ssh
+http://stackoverflow.com/questions/954302/how-to-make-a-programme-continue-to-run-after-log-out-from-ssh
+###javascript attempts to get field
+Attempting to retrieve values from undefined will throw a TypeError exception. This
+can be guarded against with the && operator:
+    flight.equipment
+    flight.equipment.model
+    flight.equipment && flight.equipment.model
+// undefined
+// throw "TypeError"
+// undefined
+
+###go build ignore
+###go generate
+###vagrant vs docker
+###gem file change source
+http://yinkang.me/archives/194
+
+###Closure
+In programming languages, closures (also lexical closures or function closures) are a technique for implementing lexically scoped name binding in languages with first-class functions. Operationally, a closure is a record storing a function[a] together with an environment:[1] a mapping associating each free variable of the function (variables that are used locally, but defined in an enclosing scope) with the value or storage location to which the name was bound when the closure was created.[b] A closure—unlike a plain function—allows the function to access those captured variables through the closure's reference to them, even when the function is invoked outside their scope.
+###iOS gcd 
+###locate
+locate hadoop
+###unalias
+unalias fs &> /dev/null
+alias fs="hadoop fs"
+###screen command
+screen command saves the scene/context of terminal
+###HTML-CSS-JS Prettify
+html format
+###hdinsight
+```
+https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-run-samples-linux/
+```
+###java install
+```
+sudo apt-add-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+```
+###tar to pointed folder
+```
+tar -xzf gdal-2.0.2.tar.gz -C b --strip-components=1
+```
+http://manpages.ubuntu.com/manpages/natty/en/man1/tar.1.html
+###create a line
+```
+To solve this: create a link in the /usr/share/ant/lib/
+
+sudo ln -s -T /usr/share/java/ivy.jar /usr/share/ant/lib/ivy.jar
+
+```
+```
+curl http://wordpress.org/latest.tar.gz | tar xvz
+```
+what is "make distcheck"?
+###MR4C env
+```
+--install log4cxx
+either
+curl -O http://archive.apache.org/dist/apr/apr-1.5.2.tar.bz2
+curl -O http://archive.apache.org/dist/apr/apr-util-1.5.4.tar.bz2
+curl -O http://apache.fayea.com/logging/log4cxx/0.10.0/apache-log4cxx-0.10.0.tar.gz
+or sudo apt-get install liblog4cxx10 liblog4cxx10-dev
+
+--remains
+curl -O http://www.digip.org/jansson/releases/jansson-2.7.tar.gz
+curl -O http://download.osgeo.org/gdal/2.0.2/gdal-2.0.2.tar.gz
+git clone https://github.com/OSGeo/proj.4.git
+sudo apt-get install libcppunit-dev
+```
+###curl tutorial
+https://curl.haxx.se/docs/httpscripting.html
+###download and execute 
+```
+cd /tmp && curl -O http://mywebserver.com/CasperShare/Scripts/installer_script.sh | bash
+```
+###Sed keep find pattern
+```
+sed -n 's/Expec\(te\)\(d\)/\1/gp' qwe
+```
+###Sed command find and replace in file and overwrite file
+
+When the shell sees  > index.html in the command line it opens the file index.html for writing, wiping off all its previous contents.
+
+To fix this you need to pass the -i option to sed to make the changes inline and create a backup of the original file before it does the changes in-place:
+```
+sed -i.bak s/STRING_TO_REPLACE/STRING_TO_REPLACE_IT/g index.html
+```
+Without the .bak the command will fail on some platforms, such as Mac OSX.
+
+
+###append to one file without new line
+use n flag
+```
+echo -n "foo" >> file.txt
+```
+###awk delimiter
+```
+awk -F'-' '{print $2}' a.txt
+egrep -i "\'coolpad-" test_device.yaml | awk -F'-' '{print $2}' | sort | uniq | sed "s/'//g" | xargs -I {} echo -n "{}|" >> a.txt
+```
+###Vim convert to upperletter/lowerletter
+v define the spectrum that you want to convert
+use U to convert to upper letter
+use u to convert to lower letteru
 ###
 If you consider the Git Faq section "Git Aliases with argument", you could do it, but by calling git through a shell:
 ```

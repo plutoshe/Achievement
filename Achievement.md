@@ -1,3 +1,86 @@
+###mongo add date before 1970
+```
+db.total.insert({"appid" : "8E3BF598367BC70B", "channel" : "all", "event" : "sharelink:", "timestamp" : new Date("0000-01-01"), "count" : NumberInt(166) })
+```
+###golang append efficiency
+result:
+```
+➜  times:  100000
+    insert string: "123"
+    general: 673.841µs
+    append: 12.388045ms
+
+➜  times:  1000000
+    insert string: "123"
+    general: 7.26912ms
+    append: 217.312827ms
+
+➜  times:  1000000
+    insert string: "111111111111111111111111111111111111111111111"
+    general: 8.005553ms
+    append: 249.618923ms
+```
+testcode:
+```
+package main
+
+import (
+  "fmt"
+  "time"
+)
+
+const n = 1000000
+
+func main() {
+  fmt.Println(time.Now())
+  a := make([]string, n)
+  last := time.Now()
+  ss := "111111111111111111111111111111111111111111111"
+  for i := 0; i < n; i++ {
+    a[i] = ss
+  }
+  fmt.Println(time.Now(), "\n", time.Now().Sub(last))
+  last = time.Now()
+  b := make([]string, 0)
+  for i := 0; i < n; i++ {
+    b = append(b, ss)
+  }
+  fmt.Println(time.Now(), "\n", time.Now().Sub(last))
+}
+```
+###golang channel another example
+```
+package main
+
+import (
+  "fmt"
+  "time"
+)
+
+func main() {
+ 
+  ticker := time.NewTicker(5 * time.Second)
+  quit := make(chan struct{})
+
+  for {
+    time.Sleep(10 * time.Second)
+    select {
+    case <-ticker.C:
+      fmt.Println(time.Now(), "!!!!")
+    case <-quit:
+      ticker.Stop()
+      return
+    }
+  }
+}
+```
+this program will output 
+```
+2016-03-14 14:40:00.307870153 +0800 CST !!!!
+2016-03-14 14:40:10.309729548 +0800 CST !!!!
+2016-03-14 14:40:20.310666415 +0800 CST !!!!
+```
+Because the Ticker only issues a channel with capacity of 1, the write will be blocked when message have not been consumed.
 ###golang interface marshal
 when we need to marshal into a interface value
 ```
@@ -164,15 +247,15 @@ import (
 )
 
 func main() {
-  d := make(chan int, 10)
+  d := make(chan int, 10) // define the channel d capacity
   e := make(chan int)
   num := 10
   for i := 0; i < num; i++ {
     go func(i int) {
       time.Sleep(1 * time.Second)
       d <- i
-      e <- i
       fmt.Println(i, " finished")
+      e <- i
     }(i)
   }
   j := 0
@@ -182,7 +265,7 @@ func main() {
       // fmt.Println(s)
       j++
     }
-    if j >= num-1 {
+    if j >= num-1 { // if the channel capacity is less than the value of this condition, deadlock of goroutine will be altered.
       break
     }
   }
